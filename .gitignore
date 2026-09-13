@@ -1,0 +1,22 @@
+# R session & workspace cache
+.Rhistory
+.RData
+.RDataTmp
+.Ruserdata
+.Rproj.user/
+
+# Input data & local outputs (keeps repository clean)
+*.csv
+*.tsv
+*.txt
+data/
+
+# Exported figures
+*.pdf
+*.png
+*.svg
+plots/
+
+# OS system files
+.DS_Store
+Thumbs.db
