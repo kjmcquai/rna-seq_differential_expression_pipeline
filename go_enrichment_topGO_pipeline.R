@@ -1,3 +1,4 @@
+# Import libraries
 library(tidyverse)
 library(topGO)
 
@@ -17,10 +18,10 @@ combined <- map_dfr(file_list, ~read_tsv(.x, comment = "##") %>%
 #------------- Filter DEGs -------------------------------------------------
 
 # Load whole genome GO file
-whole_genome <- read_csv(choose.files()) # Selected the "combined" file from above
+whole_genome <- combined
 
 # Load DEG list
-deg_list <- read_csv(choose.files()) # Selected the table of DEGs sent to me 
+deg_list <- read_csv("data/DEG_list.csv") 
 
 # Filter whole genome GO file to just DEGs
 deg_GO <- whole_genome %>%
@@ -105,7 +106,7 @@ write_csv(term_gene_table, "genes_per_GO_term.csv")
 # ------------------- Combining DEG and New Table with Genes ----------------
 
 # Import the file with GO terms and their genes 
-GO_gene_table <- read_csv(file.choose()) # genes_per_GO_term
+GO_gene_table <- read_csv("data/genes_per_GO_term.csv") 
 
 GO_gene_deg <- GO_gene_table %>%
   left_join(deg_list, by = c("gene_id" = "id")) %>%
